@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { StyledApp } from './App.styled';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
@@ -20,13 +20,7 @@ const App = () => {
   const [totalImages, setTotalImages] = useState(0);
   const [notificationShown, setNotificationShown] = useState(false);
 
-  useEffect(() => {
-    if (page !== 1 || query !== '') {
-      fetchData();
-    }
-  }, [page, query,]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     if (!query) return;
 
     try {
@@ -61,7 +55,11 @@ const App = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [query, page, notificationShown]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleSearchSubmit = (value) => {
     setQuery(value);
