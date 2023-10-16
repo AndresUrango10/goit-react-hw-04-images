@@ -20,6 +20,7 @@ const Searchbar = ({ onSubmit }) => {
     onSubmit(inputValue);
     setInputValue('');
   };
+  
 
   return (
     <HeaderSearchbar>

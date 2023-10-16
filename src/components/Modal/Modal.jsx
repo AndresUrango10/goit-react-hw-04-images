@@ -20,7 +20,7 @@ const Modal = ({ image, closeModal }) => {
   return (
     <ModalOverlay onClick={closeModal}>
       <ModalContainer onClick={(e) => e.stopPropagation()}>
-        <img src={image.largeImageURL} alt={image.alt} />
+        <img src={image.largeImageURL} alt="" />
       </ModalContainer>
     </ModalOverlay>
   );
@@ -29,7 +29,6 @@ const Modal = ({ image, closeModal }) => {
 Modal.propTypes = {
   image: PropTypes.shape({
     largeImageURL: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
   }).isRequired,
   closeModal: PropTypes.func.isRequired,
 };
